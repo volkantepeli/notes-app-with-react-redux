@@ -5,8 +5,8 @@ export const formSlice = createSlice({
     initialState: {
         items:[{
             id : '1',
-            note : 'Pay House',
-            color : 'bgYellow'
+            note : 'You can choose a color according to the importance and keep a note.',
+            color : 'bgRed'
         }],
 
     },
@@ -14,8 +14,13 @@ export const formSlice = createSlice({
         addNote: (state,action) => {
             state.items.push(action.payload);
         },
+        deleteNote: (state, action) => {
+            const id = action.payload; 
+            const filtered = state.items.filter((item) => item.id !== id);
+            state.items = filtered;
+          },
     },
 })
 
-export const {addNote} = formSlice.actions;
+export const {addNote,deleteNote} = formSlice.actions;
 export default formSlice.reducer;
